@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
@@ -10,7 +11,11 @@ public class SelectTopBiwords {
         Runnable run = new Runnable() {
             @Override
             public void run() {
-                app.execute();
+                try {
+                    app.execute();
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
             }
         };
         Thread th = new Thread(run);
@@ -76,7 +81,7 @@ public class SelectTopBiwords {
         }
     });
 
-    public void execute() {
+    public void execute() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line;
         while((line = br.readLine()) != null) {
